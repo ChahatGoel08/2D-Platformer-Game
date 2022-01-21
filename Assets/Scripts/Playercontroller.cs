@@ -25,6 +25,19 @@ public class Playercontroller : MonoBehaviour
         }
         transform.localScale = scale;
 
+
+        bool crouch = Input.GetKeyDown(KeyCode.RightControl);
+        Vector3 scalee = transform.localScale;
+        if (crouch == true)
+        {
+            animator.SetBool("Crouch", true);
+        }
+        else if (crouch == false)
+        {
+            animator.SetBool("Crouch", false);
+        }
+        transform.localScale = scalee;
+
     }
 }
 

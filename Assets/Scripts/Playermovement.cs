@@ -35,34 +35,29 @@ public class Playermovement : MonoBehaviour
         transform.localScale = scale;
 
 
-        //bool crouch = Input.GetKey(KeyCode.RightControl);
-        //Vector3 scale = transform.localScale;
-        //if (crouch == true)
-        //{
-          //  animator.SetBool("crouch", true);
-           //scale.x = -1f * Mathf.Abs(scale.x);
-        //}
-        //else if (crouch == false)
-        //{
-          //  animator.SetBool("crouch", false);
-            //scale.x = Mathf.Abs(scale.x);
-        //}
-        //transform.localScale = scale;
-
-          float jump = Input.GetAxisRaw("Vertical");
-          animator.SetFloat("jump", Mathf.Abs(jump));
-          Vector3 scalee = transform.localScale;
-          if (jump < 0)
-          {
-               scalee.x = -1f * Mathf.Abs(scalee.x);
-           }
-           else if (jump > 0)
-           {
-             scalee.x = Mathf.Abs(scalee.x);
-           }
-           transform.localScale = scalee;
-
+        float jump = Input.GetAxisRaw("Vertical");
+        animator.SetFloat("jump", Mathf.Abs(jump));
+        Vector3 scalee = transform.localScale;
+        if (jump < 0)
+        {
+            scalee.x = -1f * Mathf.Abs(scalee.x);
+        }
+        else if (jump > 0)
+        {
+            scalee.x = Mathf.Abs(scalee.x);
+        }
+        transform.localScale = scalee;
         
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            animator.SetBool("crouch", true);
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            animator.SetBool("crouch", false);    
+        }
+
+
 
     }
 }
