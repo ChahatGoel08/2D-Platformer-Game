@@ -5,15 +5,26 @@ using UnityEngine;
 public class Playercontroller : MonoBehaviour
 {
    public Animator animator;
+
     private void Awake()
     {
         Debug.Log("Player controller Awake");
     }
     //private void OnCollisionEnter2D(Collision2D collision)
     //{
-     //Debug.Log("Collision:" + collision.gameObject.name);
+    //Debug.Log("Collision:" + collision.gameObject.name);
     //}
     private void Update()
+    {
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        MoveCharacter(horizontal);
+        PlayMovementAnimation(horizontal);
+    }
+    private void MoveCharacter(float horizontal)
+    {
+        transform.Translate(Input.GetAxis("Horizontal") * Time.deltaTime, 0, 0);
+    }
+    private void PlayMovementAnimation(float horizontal)
     {
         float speed = Input.GetAxisRaw("Horizontal");
         animator.SetFloat("Speed",Mathf.Abs(speed));
@@ -24,20 +35,7 @@ public class Playercontroller : MonoBehaviour
             scale.x = Mathf.Abs(scale.x);
         }
         transform.localScale = scale;
+     }
 
-
-        bool crouch = Input.GetKeyDown(KeyCode.RightControl);
-        Vector3 scalee = transform.localScale;
-        if (crouch == true)
-        {
-            animator.SetBool("Crouch", true);
-        }
-        else if (crouch == false)
-        {
-            animator.SetBool("Crouch", false);
-        }
-        transform.localScale = scalee;
-
-    }
 }
 
