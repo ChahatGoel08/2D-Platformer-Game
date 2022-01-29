@@ -7,10 +7,13 @@ public class Playercontroller : MonoBehaviour
    public Animator animator;
     public float speed;
     public float jump;
+    private Rigidbody2D rgbd;
+    public Groundcheck groundcheck;
 
     private void Awake()
     {
         Debug.Log("Player controller Awake");
+        rgbd = this.gameObject.GetComponent<Rigidbody2D>();
     }
     //private void OnCollisionEnter2D(Collision2D collision)
     //{
@@ -19,14 +22,20 @@ public class Playercontroller : MonoBehaviour
     private void Update()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-        MoveCharacter(horizontal);
+        float jump = Input.GetAxisRaw("Jump");
+        MoveCharacter(horizontal, jump);
         PlayMovementAnimation(horizontal);
-        PlayJumpAnimation(vertical);
+        PlayJumpAnimation(jump);
     }
-    private void MoveCharacter(float horizontal)
+    private void MoveCharacter(float horizontal, float jump)
     {
-        transform.Translate(Input.GetAxis("Horizontal") * Time.deltaTime, 0, 0);
+        transform.Translate(Input.GetAxis("Horizontal") * speed * Time.deltaTime, 0, 0);
+        if(jump>0 && groundcheck.isGrounded == true)
+        {
+            //rgbd.velocity = new Vector2(rgbd.velocity.x, jump);
+            
+           rgbd.AddForce(new Vector2(0f, jump), ForceMode2D.Impulse);
+        }
     }
     private void PlayMovementAnimation(float horizontal)
     {
@@ -40,15 +49,15 @@ public class Playercontroller : MonoBehaviour
         }
         transform.localScale = scale;
      }
-    private void PlayJumpAnimation(float vertical)
+    private void PlayJumpAnimation(float jump)
     {
-        animator.SetFloat("Jump", Mathf.Abs(vertical));
+        animator.SetFloat("Jump", Mathf.Abs(jump));
         Vector3 scale = transform.localScale;
-        if (vertical < 0)
+        if (jump < 0)
         {
             scale.x = -1f * Mathf.Abs(scale.x);
         }
-        else if (vertical > 0)
+        else if (jump > 0)
         {
             scale.x = Mathf.Abs(scale.x);
         }
