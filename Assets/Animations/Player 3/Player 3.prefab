@@ -113,7 +113,7 @@ Transform:
   m_GameObject: {fileID: 2601911413223461059}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0292047, y: 1.4655683, z: 1}
+  m_LocalScale: {x: 2.433497, y: 2.1469123, z: 1.201674}
   m_Children:
   - {fileID: 1446467162}
   - {fileID: 5154962584524850722}
@@ -203,7 +203,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.021789312, y: -0.00683192}
+  m_Offset: {x: 0.021789312, y: 0.9833857}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.42, y: 0.1}
@@ -214,7 +214,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6439543, y: 0.08932203}
+  m_Size: {x: 0.6439543, y: 2.0383232}
   m_EdgeRadius: 0
 --- !u!95 &1554708655
 Animator:
@@ -248,9 +248,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1554708655}
-  speed: 6
-  jump: 100
+  speed: 5
+  jump: 1
   groundcheck: {fileID: 3493281647191496308}
+  deathFall: {fileID: 0}
+  levelStart: {fileID: 0}
 --- !u!1 &5724884237292144704
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,7 +295,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.26569974, y: -1.1067505}
