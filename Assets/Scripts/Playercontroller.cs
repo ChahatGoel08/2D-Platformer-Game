@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Playercontroller : MonoBehaviour
 {
-   public Animator animator;
+    public ScoreController scoreController;
+    public Animator animator;
     public float speed;
     public float jump;
     private Rigidbody2D rgbd;
@@ -15,6 +17,13 @@ public class Playercontroller : MonoBehaviour
         Debug.Log("Player controller Awake");
         rgbd = this.gameObject.GetComponent<Rigidbody2D>();
     }
+
+    public void PickUpKey()
+    {
+        Debug.Log("Player picked up the key");
+        scoreController.IncreaseScore(10);
+    }
+
     //private void OnCollisionEnter2D(Collision2D collision)
     //{
     //Debug.Log("Collision:" + collision.gameObject.name);

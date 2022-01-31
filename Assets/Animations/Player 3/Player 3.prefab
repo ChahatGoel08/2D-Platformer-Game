@@ -247,12 +247,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5ae03451982fd449a42888d82150482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreController: {fileID: 0}
   animator: {fileID: 1554708655}
   speed: 5
   jump: 1
   groundcheck: {fileID: 3493281647191496308}
-  deathFall: {fileID: 0}
-  levelStart: {fileID: 0}
 --- !u!1 &5724884237292144704
 GameObject:
   m_ObjectHideFlags: 0
