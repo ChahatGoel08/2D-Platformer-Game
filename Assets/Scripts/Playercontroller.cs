@@ -18,6 +18,12 @@ public class Playercontroller : MonoBehaviour
         rgbd = this.gameObject.GetComponent<Rigidbody2D>();
     }
 
+    internal void KillPlayer()
+    {
+        Debug.Log("Player is killed by enemy");
+        Destroy(gameObject);
+    }
+
     public void PickUpKey()
     {
         Debug.Log("Player picked up the key");
