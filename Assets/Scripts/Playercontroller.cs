@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Playercontroller : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Playercontroller : MonoBehaviour
     public float jump;
     private Rigidbody2D rgbd;
     public Groundcheck groundcheck;
+    public bool death;
 
     private void Awake()
     {
@@ -18,10 +20,24 @@ public class Playercontroller : MonoBehaviour
         rgbd = this.gameObject.GetComponent<Rigidbody2D>();
     }
 
-    internal void KillPlayer()
+    public void KillPlayer()
     {
         Debug.Log("Player is killed by enemy");
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        animator.SetBool("Death", true);
+        StartCoroutine(Death());
+    }
+
+    private IEnumerator Death()
+    {
+        yield return new WaitForSeconds(4f);
+        ReloadLevel();
+    }
+
+    private void ReloadLevel()
+    {
+        Debug.Log("Reloading the scene");
+        SceneManager.LoadScene("animation");
     }
 
     public void PickUpKey()
